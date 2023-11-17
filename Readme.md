@@ -11,6 +11,7 @@ The follwoing files need to be updated:
 * docker-compose.yml
 
 after the relevant variables have been modified, run:
+
     docker compose up -d --build
 
 # Status
