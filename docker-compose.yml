@@ -1,0 +1,57 @@
+version: '2'
+
+volumes:
+  hubzilla:
+
+networks:
+  web:
+    name: nginx_default
+    external: true
+  internal:
+    external: false
+
+services:
+  db:
+    container_name: hubzilladb
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "hubzilla"
+      MYSQL_USER: "hubzilla"
+      MYSQL_PASSWORD: "hubzilla"
+    image: mariadb
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - internal
+  app:
+    container_name: hubzilla
+    environment:
+      - PUID=1001
+      - PGID=1001
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Update below
+      args:
+        DOMAIN: ""
+        SMTP_EMAIL: ""
+        SMTP_SERVER: ""
+        SMTP_PORT: 
+        SMTP_USER: ""
+        SMTP_PASS: ""
+        ADMIN_EMAIL: ""
+    image: hubzilla
+    restart: always
+    networks:
+      - web
+      - internal
+    volumes:
+      - hubzilla:/var/www/html
+    ports:
+      - "80"
+    depends_on:
+      - db
+    links:
+      - db
+
