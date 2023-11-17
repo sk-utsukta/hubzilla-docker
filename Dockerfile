@@ -47,7 +47,7 @@ RUN sed -i "s/{{SMTP_EMAIL}}/$SMTP_EMAIL/g" /etc/ssmtp/ssmtp.conf && \
     sed -i "s/{{SMTP_PORT}}/$SMTP_PORT/g" /etc/ssmtp/ssmtp.conf && \
     sed -i "s/{{SMTP_PASS}}/$SMTP_PASS/g" /etc/ssmtp/ssmtp.conf && \
     sed -i "s/{{SMTP_USER}}/$SMTP_USER/g" /etc/ssmtp/ssmtp.conf
-RUN sed -i "s/{{SMTP_EMAIL}}/$SMTP_EMAIL/g" /etc/ssmtp/revaliases
+#RUN sed -i "s/{{SMTP_EMAIL}}/$SMTP_EMAIL/g" /etc/ssmtp/revaliases
 #RUN sed -i 's#\;sendmail_path =#sendmail_path = /usr/sbin/ssmtp -t#g' /etc/php/8.2/apache2/php.ini
 
 RUN echo "*/15 * * * * cd /var/www/html; /usr/bin/php Zotlabs/Daemon/Master.php Cron" | crontab -u www-data -
