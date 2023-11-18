@@ -16,7 +16,7 @@ after the relevant variables have been modified, run:
 
 # Hubzilla Setup
 
-The website is avialable on port 80, for  `Database Server Name` use the name of the database container `hubzilladb` and leave the port to `0`
+The website is available on port 80, for  `Database Server Name` use the name of the database container `hubzilladb` and leave the port to `0`
 
 SSL certificates have not been configured so make sure the container is behind a proxy.
 
